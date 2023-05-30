@@ -1,0 +1,39 @@
+exe 4
+SELECT e.first_name | | ' ' | | e.last_name AS nome,
+       e.salary AS salário,
+       e.salary * e.comission_pct AS comissão
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+WHERE d.department_name = 'Sales'
+ORDER BY e.first_name, e.salary;
+exe 5
+SELECT
+  funcionario.nome AS nome_funcionario,
+  historico.data_inicio,
+  historico.data_fim,
+  departamento.nome AS nome_departamento,
+  departamento.cidade,
+  departamento.pais,
+  cargo.descricao AS descricao_cargo
+FROM
+  historico
+JOIN funcionario ON funcionario.id = historico.id_funcionario
+JOIN departamento ON departamento.id = historico.id_departamento
+JOIN cargo ON cargo.id = historico.id_cargo;
+
+ tabelas historico, funcionario, departamento e cargo
+exe 6
+SELECT
+  e.first_name,
+  e.last_name,
+  e.salary,
+  d.department_name,
+  j.job_title,
+  CONCAT(m.first_name, ' ', m.last_name) AS manager_name
+FROM
+  employees e
+  INNER JOIN departments d ON e.department_id = d.department_id
+  INNER JOIN jobs j ON e.job_id = j.job_id
+  LEFT JOIN employees m ON e.manager_id = m.employee_id;
+
+tabelas employees, departments, jobs
