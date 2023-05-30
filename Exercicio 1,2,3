@@ -1,0 +1,17 @@
+exe 1
+SELECT first_name | |  '    '  | | last_name AS nome, hire_date, job_title
+FROM employees
+ORDER BY salary DESC; 
+exe 2 
+SELECT department_id, department_name
+FROM departments
+WHERE manager_id IS NULL
+ORDER BY department_name;
+exe 3
+SELECT department_name, first_name AS gerente, email, city
+FROM departments
+JOIN employees ON departments.manager_id = employees.employee_id
+JOIN locations ON departments.location_id = locations.location_id
+JOIN countries ON locations.country_id = countries.country_id
+WHERE countries.country_name IN ('United States of America', 'Canada')
+ORDER BY city, department_name;
